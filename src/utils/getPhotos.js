@@ -18,11 +18,23 @@ export const getBackgroundImage = async () => {
 
 export const getCategoryPhotos = async (query, page) => {
   try {
-    let backgroundImage;
-    await client.photos.search({ query, per_page: 32, page: page }).then(photo => {
-      backgroundImage = photo;
+    let photos;
+    await client.photos.search({ query, per_page: 20, page: page }).then(photo => {
+      photos = photo;
     });
-    return backgroundImage;
+    return photos;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMainPageImages = async () => {
+  try {
+    let photos;
+    await client.photos.curated({ per_page: 30}).then(photo => {
+      photos = photo;
+    });
+    return photos;
   } catch (error) {
     console.log(error);
   }

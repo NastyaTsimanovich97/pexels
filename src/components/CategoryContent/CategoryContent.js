@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { map, slice, upperFirst } from 'lodash';
+import { map, each, upperFirst } from 'lodash';
 import { getCategoryPhotos } from '../../utils/getPhotos';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -14,10 +14,14 @@ const CategoryContent = ({categoryName}) => {
   const likedImages = JSON.parse(localStorage.getItem('likedImages'));
 
   useEffect(async () => {
-    const result = await getCategoryPhotos(categoryName, 1);
-    setPhotosUrl(() => [...result.photos]);
-    setCurrentPage(currentPage + 1);
+    await handleLoadMore();
   },[]);
+
+  const handleLoadMore = async() => {
+    const result = await getCategoryPhotos(categoryName, currentPage + 1);
+    setPhotosUrl((oldResults) => [...oldResults, ...result.photos]);
+    setCurrentPage(currentPage + 1);
+  };
 
   const renderPhotos = (photoArray) => (
     map(photoArray, (photo, index) => {
@@ -35,10 +39,28 @@ const CategoryContent = ({categoryName}) => {
     })
   );
 
-  const handleLoadMore = async() => {
-    const result = await getCategoryPhotos(categoryName, currentPage + 1);
-    setPhotosUrl(() => [...result.photos]);
-    setCurrentPage(currentPage + 1);
+  const renderPhotosGrid = () => {
+    const firstColumn = [];
+    const secondColumn  = [];
+    const thirdColumn = [];
+    each(photosUrl, (url, index) => {
+      if (index===0 || index%3 === 0) {firstColumn.push(url);}
+      else if (index===1 || (index-1)%3 === 0) {secondColumn.push(url);}
+      else if (index===2 || (index-2)%3 === 0) {thirdColumn.push(url);}
+    });
+    return (
+      <div className='photosContainer'>
+        <div>
+          {renderPhotos(firstColumn)}
+        </div>
+        <div>
+          {renderPhotos(secondColumn)}
+        </div>
+        <div>
+          {renderPhotos(thirdColumn)}
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -50,17 +72,7 @@ const CategoryContent = ({categoryName}) => {
         hasMore={10-currentPage !== 0}
         loader={<h4>Loading...</h4>}
       >
-        <div className='photosContainer'>
-          <div>
-            {renderPhotos(slice(photosUrl, 0, 10))}
-          </div>
-          <div>
-            {renderPhotos(slice(photosUrl, 11, 21))}
-          </div>
-          <div>
-            {renderPhotos(slice(photosUrl, 22, 32))}
-          </div>
-        </div>
+        {renderPhotosGrid()}
       </InfiniteScroll>
     </section>
   );

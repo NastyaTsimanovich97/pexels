@@ -11,7 +11,7 @@ const NavigationMenu = ({context}) => {
   return(
     <nav className={context === 'category' ? 'navCategoryContainer' : 'navContainer'} >
       <Title />
-      {context === 'category' && <SearchBox />}
+      {context === 'category' && <SearchBox context='navigation'/>}
       <ul className='linkContainer'>
         <li><a>Explore</a></li>
         <li><a>License</a></li>

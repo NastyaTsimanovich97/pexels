@@ -9,14 +9,14 @@ import SearchIcon from '../../assets/search.svg';
 import addSearchValue from '../../store/actions';
 
 
-const SearchBox = ({search, addSearchValue}) => {
+const SearchBox = ({search, addSearchValue, context}) => {
   const [searchValue, setSearchValue] = useState(search);
   const history = useHistory();
 
   const handleClickSearch = () => {
     addSearchValue(searchValue);
     if (searchValue !== '') {
-      history.push(`category/${searchValue}`);
+      context === 'navigation' ? history.push(`${searchValue}`) : history.push(`category/${searchValue}`);
     }
   };
 
@@ -24,7 +24,7 @@ const SearchBox = ({search, addSearchValue}) => {
     if (event.key === 'Enter') {
       addSearchValue(searchValue);
       if (searchValue !== '') {
-        history.push(`category/${searchValue}`);
+        context === 'navigation' ? history.push(`${searchValue}`) : history.push(`category/${searchValue}`);
       }
     }
   };
@@ -65,7 +65,8 @@ const mapDispatchToProps = dispatch => {
 SearchBox.propTypes = {
   addSearchValue: PropTypes.func,
   search: PropTypes.string,
-  history: PropTypes.object
+  history: PropTypes.object,
+  context: PropTypes.string
 };
 
 export default connect(
