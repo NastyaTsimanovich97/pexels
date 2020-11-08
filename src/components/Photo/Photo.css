@@ -1,0 +1,93 @@
+.photoContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.photoImg {
+  width: 90%;
+}
+
+.photoInfoHidden {
+  display: none;
+}
+
+.photoInfo {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 42px;
+  bottom: 5px;
+  background-color: #3d3d3d2d;
+}
+
+.photographer {
+  padding: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.photoButton {
+  margin-left: auto;
+}
+
+.photoButton img{
+  margin-right: 10px;
+}
+
+.photoButton img:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#photoModal {
+  position: fixed;
+  bottom: 550px;
+  left: 290px;
+  z-index: 10;
+}
+
+.photoModal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
+  height: 450px;
+  outline: none;
+  background: #fff;
+  border-radius: 6px;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photoModalImg {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+}
+
+.photoModalImg img {
+  width: 60%;
+}
+
+.photoModalTitle {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.modal {
+  display: flex;
+}
+
+.modalButton {
+  position: absolute;
+  cursor: pointer;
+}
+
+.closeModalButton {
+  width: 20px;
+}

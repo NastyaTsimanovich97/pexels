@@ -1,0 +1,17 @@
+.categoryContainer {
+  position: relative;
+  top: 140px;
+  padding-left: 40px;
+  z-index: 1;
+}
+
+.categoryTitle {
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.photosContainer{
+  display: flex;
+}

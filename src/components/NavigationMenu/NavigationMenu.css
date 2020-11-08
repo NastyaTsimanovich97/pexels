@@ -1,0 +1,54 @@
+.navContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  z-index: 10;
+}
+
+.navCategoryContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: #232a34;
+  z-index: 10;
+}
+
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  list-style: none;
+}
+
+.linkContainer li {
+  color: #ffffff;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.linkContainer li:hover {
+  color: #ffffffe8;
+  transform: scale(0.9);
+}
+
+.navButton {
+  width: 88px;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #05a081;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.menu {
+  width: 30px;
+  height: 30px;
+}
